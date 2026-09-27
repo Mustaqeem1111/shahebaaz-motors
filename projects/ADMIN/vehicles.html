@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Vehicles | Shahebaz Motors Admin
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body class="admin-body">
+
+
+    <div class="admin-layout">
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+
+                <div class="admin-brand-logo">
+                    SM
+                </div>
+
+                <div>
+
+                    <h2>
+                        Shahebaz Motors
+                    </h2>
+
+                    <span>
+                        Admin Panel
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav class="admin-navigation">
+
+                <a
+                    href="dashboard.html"
+                    class="admin-nav-link"
+                >
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+
+                <a
+                    href="vehicles.html"
+                    class="admin-nav-link active"
+                >
+                    <span>🚗</span>
+                    Vehicles
+                </a>
+
+
+                <a
+                    href="enquiries.html"
+                    class="admin-nav-link"
+                >
+                    <span>✉</span>
+                    Enquiries
+                </a>
+
+
+                <a
+                    href="rentals.html"
+                    class="admin-nav-link"
+                >
+                    <span>🔑</span>
+                    Rentals
+                </a>
+
+
+                <a
+                    href="sell-request.html"
+                    class="admin-nav-link"
+                >
+                    <span>🚘</span>
+                    Sell Requests
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <a
+                    href="../index.html"
+                    target="_blank"
+                    class="admin-nav-link"
+                >
+                    <span>↗</span>
+                    View Website
+                </a>
+
+
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="logout-button"
+                >
+                    <span>↪</span>
+                    Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="admin-main">
+
+
+            <!-- TOP BAR -->
+
+            <header class="admin-topbar">
+
+                <div>
+
+                    <p class="admin-eyebrow">
+                        INVENTORY MANAGEMENT
+                    </p>
+
+                    <h1>
+                        Vehicles
+                    </h1>
+
+                </div>
+
+
+                <div class="admin-user">
+
+                    <div class="admin-user-avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Administrator
+                        </strong>
+
+                        <span>
+                            Shahebaz Motors
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- VEHICLE STATS -->
+
+            <section class="dashboard-stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🚗
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Vehicles
+                        </span>
+
+                        <strong id="totalVehicles">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Available
+                        </span>
+
+                        <strong id="availableVehicles">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        $
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Sold
+                        </span>
+
+                        <strong id="soldVehicles">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🔑
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Rental
+                        </span>
+
+                        <strong id="rentalVehicles">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- TOOLBAR -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="admin-eyebrow">
+                            INVENTORY
+                        </p>
+
+                        <h2>
+                            Vehicle Management
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="addVehicleButton"
+                        class="admin-button"
+                    >
+                        + Add Vehicle
+                    </button>
+
+                </div>
+
+
+                <div class="admin-filter-bar">
+
+                    <div class="admin-search">
+
+                        <input
+                            type="search"
+                            id="vehicleSearch"
+                            placeholder="Search vehicle, brand, model..."
+                        >
+
+                    </div>
+
+
+                    <select
+                        id="categoryFilter"
+                        class="admin-select"
+                    >
+
+                        <option value="">
+                            All Categories
+                        </option>
+
+                        <option value="2WHEELER">
+                            2 Wheeler
+                        </option>
+
+                        <option value="3WHEELER">
+                            3 Wheeler
+                        </option>
+
+                        <option value="4WHEELER">
+                            4 Wheeler
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        id="vehicleStatusFilter"
+                        class="admin-select"
+                    >
+
+                        <option value="">
+                            All Status
+                        </option>
+
+                        <option value="AVAILABLE">
+                            Available
+                        </option>
+
+                        <option value="SOLD">
+                            Sold
+                        </option>
+
+                        <option value="RENTAL">
+                            Rental
+                        </option>
+
+                        <option value="INACTIVE">
+                            Inactive
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        type="button"
+                        id="refreshVehicles"
+                        class="admin-button secondary"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+
+
+                <!-- VEHICLE TABLE -->
+
+                <div class="table-container">
+
+                    <table class="admin-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Photo
+                                </th>
+
+                                <th>
+                                    Vehicle
+                                </th>
+
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Brand / Model
+                                </th>
+
+                                <th>
+                                    Year
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="vehiclesTable">
+
+                            <tr>
+
+                                <td
+                                    colspan="8"
+                                    class="table-loading"
+                                >
+                                    Loading vehicles...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ADD / EDIT VEHICLE MODAL -->
+
+            <div
+                id="vehicleModal"
+                class="admin-modal"
+                aria-hidden="true"
+            >
+
+                <div class="admin-modal-overlay"></div>
+
+
+                <div class="admin-modal-card vehicle-modal-card">
+
+
+                    <div class="admin-modal-header">
+
+                        <div>
+
+                            <p class="admin-eyebrow">
+                                INVENTORY
+                            </p>
+
+                            <h2 id="vehicleModalTitle">
+                                Add Vehicle
+                            </h2>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="closeVehicleModal"
+                            class="modal-close"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <form
+                        id="vehicleForm"
+                        enctype="multipart/form-data"
+                    >
+
+
+                        <input
+                            type="hidden"
+                            id="vehicleId"
+                        >
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="vehicleName">
+                                    Vehicle Name *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="vehicleName"
+                                    required
+                                    placeholder="e.g. Tata Nexon"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="category">
+                                    Category *
+                                </label>
+
+                                <select
+                                    id="category"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select category
+                                    </option>
+
+                                    <option value="2WHEELER">
+                                        2 Wheeler
+                                    </option>
+
+                                    <option value="3WHEELER">
+                                        3 Wheeler
+                                    </option>
+
+                                    <option value="4WHEELER">
+                                        4 Wheeler
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="brand">
+                                    Brand
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="brand"
+                                    placeholder="e.g. Tata"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="model">
+                                    Model
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="model"
+                                    placeholder="e.g. Nexon"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="year">
+                                    Year
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="year"
+                                    min="1900"
+                                    max="2100"
+                                    placeholder="2024"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="fuelType">
+                                    Fuel Type
+                                </label>
+
+                                <select id="fuelType">
+
+                                    <option value="">
+                                        Select fuel
+                                    </option>
+
+                                    <option value="PETROL">
+                                        Petrol
+                                    </option>
+
+                                    <option value="DIESEL">
+                                        Diesel
+                                    </option>
+
+                                    <option value="CNG">
+                                        CNG
+                                    </option>
+
+                                    <option value="ELECTRIC">
+                                        Electric
+                                    </option>
+
+                                    <option value="HYBRID">
+                                        Hybrid
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="transmission">
+                                    Transmission
+                                </label>
+
+                                <select id="transmission">
+
+                                    <option value="">
+                                        Select transmission
+                                    </option>
+
+                                    <option value="MANUAL">
+                                        Manual
+                                    </option>
+
+                                    <option value="AUTOMATIC">
+                                        Automatic
+                                    </option>
+
+                                    <option value="AMT">
+                                        AMT
+                                    </option>
+
+                                    <option value="CVT">
+                                        CVT
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="seats">
+                                    Seats
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="seats"
+                                    min="1"
+                                    max="20"
+                                    placeholder="5"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="mileage">
+                                    Mileage
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="mileage"
+                                    placeholder="e.g. 18 km/l"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="engine">
+                                    Engine
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="engine"
+                                    placeholder="e.g. 1199 cc"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="price">
+                                    Sale Price
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="price"
+                                    min="0"
+                                    placeholder="650000"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="rentalPrice">
+                                    Rental Price
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="rentalPrice"
+                                    min="0"
+                                    placeholder="1500"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="status">
+                                    Status
+                                </label>
+
+                                <select id="status">
+
+                                    <option value="AVAILABLE">
+                                        Available
+                                    </option>
+
+                                    <option value="SOLD">
+                                        Sold
+                                    </option>
+
+                                    <option value="RENTAL">
+                                        Rental
+                                    </option>
+
+                                    <option value="INACTIVE">
+                                        Inactive
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="description">
+                                    Description
+                                </label>
+
+                                <textarea
+                                    id="description"
+                                    rows="4"
+                                    placeholder="Vehicle description..."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             PHOTO UPLOAD SECTION
+                        ========================================== -->
+
+                        <div class="photo-upload-section">
+
+                            <h4>
+                                📷 Vehicle Photos
+                            </h4>
+
+                            <p>
+                                Upload up to 4 photos (max 8MB each).
+                                First photo will be the main photo.
+                            </p>
+
+
+                            <input
+                                type="file"
+                                id="vehiclePhotos"
+                                class="photo-upload-input"
+                                accept="image/*"
+                                multiple
+                            >
+
+
+                            <label
+                                for="vehiclePhotos"
+                                class="photo-upload-label"
+                            >
+
+                                <i class="fas fa-cloud-arrow-up">⬆</i>
+
+                                <strong>
+                                    Click to select photos
+                                </strong>
+
+                                <span>
+                                    JPG, PNG, WEBP, GIF — Max 8MB each
+                                </span>
+
+                            </label>
+
+
+                            <div
+                                class="photo-preview-grid"
+                                id="photoPreviewGrid"
+                            ></div>
+
+                        </div>
+
+
+                        <div
+                            id="vehicleFormError"
+                            class="error-message"
+                        ></div>
+
+
+                        <div class="modal-actions">
+
+                            <button
+                                type="button"
+                                id="cancelVehicle"
+                                class="admin-button secondary"
+                            >
+                                Cancel
+                            </button>
+
+
+                            <button
+                                type="submit"
+                                id="saveVehicle"
+                                class="admin-button"
+                            >
+                                Save Vehicle
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <footer class="admin-footer">
+
+                <span>
+                    © 2026 Shahebaz Motors
+                </span>
+
+                <span>
+                    Vehicle Management
+                </span>
+
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="admin.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            if (typeof protectAdminPage === "function") {
+                protectAdminPage();
+            }
+
+            const logoutButton = document.getElementById("logoutButton");
+
+            if (logoutButton && typeof adminLogout === "function") {
+                logoutButton.addEventListener("click", adminLogout);
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

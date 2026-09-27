@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Rentals | Shahebaz Motors Admin
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css"
+    >
+
+</head>
+
+
+<body class="admin-body">
+
+
+    <div class="admin-layout">
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-brand">
+
+                <div class="admin-brand-logo">
+                    SM
+                </div>
+
+                <div>
+
+                    <h2>
+                        Shahebaz Motors
+                    </h2>
+
+                    <span>
+                        Admin Panel
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav class="admin-navigation">
+
+                <a
+                    href="dashboard.html"
+                    class="admin-nav-link"
+                >
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+
+                <a
+                    href="vehicles.html"
+                    class="admin-nav-link"
+                >
+                    <span>🚗</span>
+                    Vehicles
+                </a>
+
+
+                <a
+                    href="enquiries.html"
+                    class="admin-nav-link"
+                >
+                    <span>✉</span>
+                    Enquiries
+                </a>
+
+
+                <a
+                    href="rentals.html"
+                    class="admin-nav-link active"
+                >
+                    <span>🔑</span>
+                    Rentals
+                </a>
+
+
+                <a
+                    href="sell-request.html"
+                    class="admin-nav-link"
+                >
+                    <span>🚘</span>
+                    Sell Requests
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <a
+                    href="../index.html"
+                    target="_blank"
+                    class="admin-nav-link"
+                >
+                    <span>↗</span>
+                    View Website
+                </a>
+
+
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="logout-button"
+                >
+                    <span>↪</span>
+                    Logout
+                </button>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="admin-main">
+
+
+            <!-- TOP BAR -->
+
+            <header class="admin-topbar">
+
+                <div>
+
+                    <p class="admin-eyebrow">
+                        RENTAL MANAGEMENT
+                    </p>
+
+                    <h1>
+                        Rental Requests
+                    </h1>
+
+                </div>
+
+
+                <div class="admin-user">
+
+                    <div class="admin-user-avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Administrator
+                        </strong>
+
+                        <span>
+                            Shahebaz Motors
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- STATS -->
+
+            <section class="dashboard-stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🔑
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Rentals
+                        </span>
+
+                        <strong id="totalRentals">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span>
+                            New
+                        </span>
+
+                        <strong id="newRentals">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Confirmed
+                        </span>
+
+                        <strong id="confirmedRentals">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ●
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Active
+                        </span>
+
+                        <strong id="activeRentals">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- FILTERS + TABLE -->
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="admin-eyebrow">
+                            CUSTOMER RENTALS
+                        </p>
+
+                        <h2>
+                            All Rental Requests
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-filter-bar">
+
+                    <div class="admin-search">
+
+                        <input
+                            type="search"
+                            id="searchRentals"
+                            placeholder="Search customer, phone, vehicle or reference..."
+                        >
+
+                    </div>
+
+
+                    <select
+                        id="rentalStatusFilter"
+                        class="admin-select"
+                    >
+                        <option value="ALL">All Status</option>
+                        <option value="NEW">New</option>
+                        <option value="CONTACTED">Contacted</option>
+                        <option value="CONFIRMED">Confirmed</option>
+                        <option value="ACTIVE">Active</option>
+                        <option value="COMPLETED">Completed</option>
+                        <option value="CANCELLED">Cancelled</option>
+                    </select>
+
+
+                    <button
+                        type="button"
+                        id="refreshRentals"
+                        class="admin-button secondary"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table class="admin-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Reference</th>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Vehicle</th>
+                                <th>Pickup</th>
+                                <th>Return</th>
+                                <th>Rate</th>
+                                <th>Status</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="rentalsTable">
+
+                            <tr>
+
+                                <td
+                                    colspan="9"
+                                    class="table-loading"
+                                >
+                                    Loading rental requests...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- FOOTER -->
+
+            <footer class="admin-footer">
+
+                <span>
+                    © 2026 Shahebaz Motors
+                </span>
+
+                <span>
+                    Rental Management
+                </span>
+
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         RENTAL DETAILS MODAL
+    ====================================================== -->
+
+    <div
+        id="rentalModal"
+        class="admin-modal"
+        aria-hidden="true"
+    >
+
+        <div class="admin-modal-overlay"></div>
+
+
+        <div class="admin-modal-card">
+
+
+            <div class="admin-modal-header">
+
+                <div>
+
+                    <p class="admin-eyebrow">
+                        RENTAL REQUEST
+                    </p>
+
+                    <h2 id="modalReference">
+                        —
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="closeRentalModal"
+                    class="modal-close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                id="rentalDetails"
+                class="enquiry-details"
+            >
+                Loading...
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="modalCloseButton"
+                    class="admin-button secondary"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="admin.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            if (typeof protectAdminPage === "function") {
+                protectAdminPage();
+            }
+
+            /* =============================================
+               RENTALS - INLINE CONTROLLER
+            ============================================= */
+
+            let allRentals = [];
+
+            const rentalsTable = document.getElementById("rentalsTable");
+            const searchInput = document.getElementById("searchRentals");
+            const statusFilter = document.getElementById("rentalStatusFilter");
+
+            async function loadRentals() {
+
+                if (!rentalsTable) return;
+
+                rentalsTable.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="table-loading">
+                            Loading rental requests...
+                        </td>
+                    </tr>
+                `;
+
+                try {
+
+                    const result = await apiRequest(`${API_BASE}/rental-request`);
+
+                    allRentals = Array.isArray(result.requests) ? result.requests : [];
+
+                    updateRentalStats();
+                    renderRentals();
+
+                } catch (error) {
+
+                    rentalsTable.innerHTML = `
+                        <tr>
+                            <td colspan="9" class="table-loading">
+                                Unable to load rental requests.<br>
+                                <small>${escapeHtml(error.message)}</small>
+                            </td>
+                        </tr>
+                    `;
+
+                }
+            }
+
+            function updateRentalStats() {
+
+                setText("totalRentals", allRentals.length);
+                setText("newRentals", countRentalStatus("NEW"));
+                setText("confirmedRentals", countRentalStatus("CONFIRMED"));
+                setText("activeRentals", countRentalStatus("ACTIVE"));
+
+            }
+
+            function countRentalStatus(st) {
+
+                return allRentals.filter(r =>
+                    String(r.status || "").toUpperCase() === st
+                ).length;
+
+            }
+
+            function renderRentals() {
+
+                if (!rentalsTable) return;
+
+                const search = (searchInput?.value || "").trim().toLowerCase();
+                const selectedStatus = statusFilter?.value || "ALL";
+
+                const filtered = allRentals.filter(r => {
+
+                    const searchable = `${r.reference || ""} ${r.customer_name || ""} ${r.phone || ""} ${r.vehicle || ""} ${r.city || ""}`.toLowerCase();
+
+                    const matchesSearch = !search || searchable.includes(search);
+
+                    const matchesStatus = selectedStatus === "ALL" ||
+                        String(r.status || "").toUpperCase() === selectedStatus;
+
+                    return matchesSearch && matchesStatus;
+
+                });
+
+                if (!filtered.length) {
+
+                    rentalsTable.innerHTML = `
+                        <tr>
+                            <td colspan="9" class="table-loading">
+                                No rental requests found.
+                            </td>
+                        </tr>
+                    `;
+
+                    return;
+                }
+
+                rentalsTable.innerHTML = filtered.map(r => {
+
+                    const status = String(r.status || "NEW").toUpperCase();
+
+                    return `
+                        <tr>
+                            <td><strong>${escapeHtml(r.reference || "—")}</strong></td>
+                            <td>${escapeHtml(r.customer_name || "—")}</td>
+                            <td>${escapeHtml(r.phone || "—")}</td>
+                            <td>${escapeHtml(r.vehicle || "—")}</td>
+                            <td>${formatDate(r.pickup_date)}</td>
+                            <td>${formatDate(r.return_date)}</td>
+                            <td>${formatPrice(r.rate)}</td>
+                            <td>
+                                <span class="status-badge status-${status.toLowerCase()}">
+                                    ${escapeHtml(status)}
+                                </span>
+                            </td>
+                            <td>
+                                <button
+                                    type="button"
+                                    class="admin-button secondary"
+                                    onclick="viewRental(${r.id})"
+                                >
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+
+                }).join("");
+            }
+
+            window.viewRental = function (rentalId) {
+
+                const rental = allRentals.find(
+                    item => Number(item.id) === Number(rentalId)
+                );
+
+                if (!rental) return;
+
+                const modalRef = document.getElementById("modalReference");
+                const details = document.getElementById("rentalDetails");
+                const modal = document.getElementById("rentalModal");
+
+                if (modalRef) {
+                    modalRef.textContent = rental.reference || "Rental Request";
+                }
+
+                if (details) {
+
+                    const currentStatus = String(rental.status || "").toUpperCase();
+
+                    const statusOptions = [
+                        "NEW",
+                        "CONTACTED",
+                        "CONFIRMED",
+                        "ACTIVE",
+                        "COMPLETED",
+                        "CANCELLED"
+                    ];
+
+                    details.innerHTML = `
+                        <div class="detail-row">
+                            <span>Customer:</span>
+                            <strong>${escapeHtml(rental.customer_name || "—")}</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Phone:</span>
+                            <strong>${escapeHtml(rental.phone || "—")}</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>City:</span>
+                            <strong>${escapeHtml(rental.city || "—")}</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Vehicle:</span>
+                            <strong>${escapeHtml(rental.vehicle || "—")}</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Rate:</span>
+                            <strong>${formatPrice(rental.rate)}/day</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Pickup Date:</span>
+                            <strong>${formatDate(rental.pickup_date)}</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Return Date:</span>
+                            <strong>${formatDate(rental.return_date)}</strong>
+                        </div>
+
+                        <div class="detail-row">
+                            <span>Status:</span>
+                            <strong>${escapeHtml(currentStatus)}</strong>
+                        </div>
+
+                        <div class="detail-message">
+                            <span>Message:</span>
+                            <p>${escapeHtml(rental.message || "No message provided.")}</p>
+                        </div>
+
+                        <div class="detail-status" style="margin-top: 15px;">
+                            <label>Update Status:</label>
+
+                            <select
+                                id="rentalStatusUpdate"
+                                class="admin-select"
+                                style="margin: 8px 0; width: 100%;"
+                            >
+                                ${statusOptions.map(st => `
+                                    <option
+                                        value="${st}"
+                                        ${currentStatus === st ? "selected" : ""}
+                                    >
+                                        ${st}
+                                    </option>
+                                `).join("")}
+                            </select>
+
+                            <button
+                                type="button"
+                                class="admin-button"
+                                style="width: 100%;"
+                                onclick="updateRentalStatus(${rental.id})"
+                            >
+                                Update Status
+                            </button>
+                        </div>
+                    `;
+                }
+
+                if (modal) {
+                    modal.classList.add("active");
+                    modal.setAttribute("aria-hidden", "false");
+                }
+            };
+
+            window.updateRentalStatus = async function (rentalId) {
+
+                const select = document.getElementById("rentalStatusUpdate");
+
+                if (!select) return;
+
+                try {
+
+                    await apiRequest(`${API_BASE}/rental-request/${rentalId}`, {
+                        method: "PUT",
+                        body: JSON.stringify({ status: select.value })
+                    });
+
+                    closeRentalModal();
+                    await loadRentals();
+
+                } catch (error) {
+
+                    alert(error.message || "Unable to update rental status.");
+
+                }
+            };
+
+            function closeRentalModal() {
+
+                const modal = document.getElementById("rentalModal");
+
+                if (modal) {
+                    modal.classList.remove("active");
+                    modal.setAttribute("aria-hidden", "true");
+                }
+            }
+
+            window.closeRentalModal = closeRentalModal;
+
+            /* =============================================
+               EVENT LISTENERS
+            ============================================= */
+
+            searchInput?.addEventListener("input", renderRentals);
+            statusFilter?.addEventListener("change", renderRentals);
+            document.getElementById("refreshRentals")?.addEventListener("click", loadRentals);
+
+            document.getElementById("closeRentalModal")?.addEventListener("click", closeRentalModal);
+            document.getElementById("modalCloseButton")?.addEventListener("click", closeRentalModal);
+            document.querySelector("#rentalModal .admin-modal-overlay")?.addEventListener("click", closeRentalModal);
+
+            const logoutButton = document.getElementById("logoutButton");
+            if (logoutButton && typeof adminLogout === "function") {
+                logoutButton.addEventListener("click", adminLogout);
+            }
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    closeRentalModal();
+                }
+            });
+
+            /* =============================================
+               INIT
+            ============================================= */
+
+            loadRentals();
+
+        });
+    </script>
+
+</body>
+
+</html>

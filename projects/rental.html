@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Rent premium vehicles from Shahebaz Motors."
+    >
+
+    <title>Rent a Vehicle | Shahebaz Motors</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-label="Open menu"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-mark">
+                SM
+            </span>
+
+            <span class="brand-text">
+                SHAHEBAZ
+                <small>MOTORS</small>
+            </span>
+
+        </a>
+
+
+        <div class="header-actions">
+
+            <a
+                href="index.html"
+                class="header-sell-btn"
+            >
+                <i class="fas fa-car"></i>
+                Browse
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         SIDE NAVIGATION
+    ====================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+    ></div>
+
+
+    <aside
+        class="side-nav"
+        id="sideNav"
+    >
+
+        <div class="nav-brand">
+
+            <span class="brand-mark">
+                SM
+            </span>
+
+            <div>
+                <strong>SHAHEBAZ</strong>
+                <small>MOTORS</small>
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <a
+                href="index.html"
+                class="nav-item"
+            >
+                <i class="fas fa-house"></i>
+                <span>Home</span>
+            </a>
+
+
+            <a
+                href="two-wheeler.html"
+                class="nav-item"
+            >
+                <i class="fas fa-motorcycle"></i>
+                <span>Two Wheelers</span>
+            </a>
+
+
+            <a
+                href="three-wheeler.html"
+                class="nav-item"
+            >
+                <i class="fas fa-truck"></i>
+                <span>Three Wheelers</span>
+            </a>
+
+
+            <a
+                href="four-wheeler.html"
+                class="nav-item"
+            >
+                <i class="fas fa-car"></i>
+                <span>Four Wheelers</span>
+            </a>
+
+
+            <a
+                href="rental.html"
+                class="nav-item active"
+            >
+                <i class="fas fa-key"></i>
+                <span>Rent a Vehicle</span>
+            </a>
+
+
+            <a
+                href="sell.html"
+                class="nav-item"
+            >
+                <i class="fas fa-tag"></i>
+                <span>Sell Your Vehicle</span>
+            </a>
+
+        </nav>
+
+
+        <div class="nav-footer">
+
+            <p>Need assistance?</p>
+
+            <a href="tel:+91XXXXXXXXXX">
+                <i class="fas fa-phone"></i>
+                Contact Us
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             RENTAL HERO
+        ================================================== -->
+
+        <section class="category-hero rental-hero">
+
+            <div class="category-hero-content">
+
+                <a
+                    href="index.html"
+                    class="back-link"
+                >
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+
+
+                <span class="hero-eyebrow">
+                    <i class="fas fa-circle"></i>
+                    SHAHEBAZ MOTORS
+                </span>
+
+
+                <h1>
+                    Rent a vehicle.
+                    <span>Your journey, your way.</span>
+                </h1>
+
+
+                <p>
+                    Choose from our available vehicles and
+                    send us your rental requirement. Our team
+                    will confirm availability and pricing.
+                </p>
+
+            </div>
+
+
+            <div class="category-hero-icon">
+
+                <i class="fas fa-key"></i>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RENTAL SECTION
+        ================================================== -->
+
+        <section class="listing-section">
+
+
+            <div class="listing-topbar">
+
+                <div>
+
+                    <span class="section-kicker">
+                        RENTAL COLLECTION
+                    </span>
+
+                    <h2>
+                        Choose your ride
+                    </h2>
+
+                    <p>
+                        Select a vehicle and tell us your rental dates.
+                    </p>
+
+                </div>
+
+
+                <div class="listing-actions">
+
+                    <div class="vehicle-search">
+
+                        <i class="fas fa-search"></i>
+
+                        <input
+                            type="search"
+                            id="rentalSearch"
+                            placeholder="Search vehicles..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="filter-toggle"
+                        id="rentalFilterToggle"
+                    >
+                        <i class="fas fa-sliders"></i>
+                        Filters
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RENTAL FILTERS
+            ================================================== -->
+
+            <div
+                class="filter-panel"
+                id="rentalFilterPanel"
+            >
+
+                <button
+                    type="button"
+                    class="filter-chip active"
+                    data-rental-filter="all"
+                >
+                    All
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-chip"
+                    data-rental-filter="bike"
+                >
+                    Bikes
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-chip"
+                    data-rental-filter="car"
+                >
+                    Cars
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-chip"
+                    data-rental-filter="suv"
+                >
+                    SUVs
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-chip"
+                    data-rental-filter="premium"
+                >
+                    Premium
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 RENTAL VEHICLES
+            ================================================== -->
+
+            <div
+                class="vehicle-grid"
+                id="rentalGrid"
+            >
+
+
+                <!-- RENTAL 01 -->
+
+                <article
+                    class="vehicle-card rental-card"
+                    data-rental-name="Honda Activa 6G"
+                    data-rental-category="bike"
+                >
+
+                    <div class="vehicle-image">
+
+                        <img
+                            src="images/rental/honda-activa.jpg"
+                            alt="Honda Activa 6G"
+                            loading="lazy"
+                        >
+
+                        <span class="vehicle-tag">
+                            POPULAR
+                        </span>
+
+                        <span class="vehicle-category-badge">
+                            BIKE
+                        </span>
+
+                    </div>
+
+
+                    <div class="vehicle-info">
+
+                        <div class="vehicle-title-row">
+
+                            <div>
+
+                                <h3>
+                                    Honda Activa 6G
+                                </h3>
+
+                                <span>
+                                    Comfortable City Ride
+                                </span>
+
+                            </div>
+
+                            <strong class="vehicle-price">
+                                ₹499/day
+                            </strong>
+
+                        </div>
+
+
+                        <div class="vehicle-specs">
+
+                            <span>
+                                <i class="fas fa-gas-pump"></i>
+                                Petrol
+                            </span>
+
+                            <span>
+                                <i class="fas fa-cogs"></i>
+                                Automatic
+                            </span>
+
+                            <span>
+                                <i class="fas fa-user"></i>
+                                2 Seats
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="rental-interest-btn interest-btn"
+                            data-rental-vehicle="Honda Activa 6G"
+                            data-rental-rate="499"
+                        >
+                            Check Availability
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RENTAL 02 -->
+
+                <article
+                    class="vehicle-card rental-card"
+                    data-rental-name="Royal Enfield Classic 350"
+                    data-rental-category="bike premium"
+                >
+
+                    <div class="vehicle-image">
+
+                        <img
+                            src="images/rental/classic-350.jpg"
+                            alt="Royal Enfield Classic 350"
+                            loading="lazy"
+                        >
+
+                        <span class="vehicle-tag">
+                            PREMIUM
+                        </span>
+
+                        <span class="vehicle-category-badge">
+                            BIKE
+                        </span>
+
+                    </div>
+
+
+                    <div class="vehicle-info">
+
+                        <div class="vehicle-title-row">
+
+                            <div>
+
+                                <h3>
+                                    Royal Enfield Classic 350
+                                </h3>
+
+                                <span>
+                                    Touring Motorcycle
+                                </span>
+
+                            </div>
+
+                            <strong class="vehicle-price">
+                                ₹899/day
+                            </strong>
+
+                        </div>
+
+
+                        <div class="vehicle-specs">
+
+                            <span>
+                                <i class="fas fa-gas-pump"></i>
+                                Petrol
+                            </span>
+
+                            <span>
+                                <i class="fas fa-gears"></i>
+                                Manual
+                            </span>
+
+                            <span>
+                                <i class="fas fa-user"></i>
+                                2 Seats
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="rental-interest-btn interest-btn"
+                            data-rental-vehicle="Royal Enfield Classic 350"
+                            data-rental-rate="899"
+                        >
+                            Check Availability
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RENTAL 03 -->
+
+                <article
+                    class="vehicle-card rental-card"
+                    data-rental-name="Maruti Suzuki Swift"
+                    data-rental-category="car"
+                >
+
+                    <div class="vehicle-image">
+
+                        <img
+                            src="images/rental/maruti-swift.jpg"
+                            alt="Maruti Suzuki Swift"
+                            loading="lazy"
+                        >
+
+                        <span class="vehicle-tag">
+                            POPULAR
+                        </span>
+
+                        <span class="vehicle-category-badge">
+                            CAR
+                        </span>
+
+                    </div>
+
+
+                    <div class="vehicle-info">
+
+                        <div class="vehicle-title-row">
+
+                            <div>
+
+                                <h3>
+                                    Maruti Suzuki Swift
+                                </h3>
+
+                                <span>
+                                    Compact Family Car
+                                </span>
+
+                            </div>
+
+                            <strong class="vehicle-price">
+                                ₹1,499/day
+                            </strong>
+
+                        </div>
+
+
+                        <div class="vehicle-specs">
+
+                            <span>
+                                <i class="fas fa-gas-pump"></i>
+                                Petrol
+                            </span>
+
+                            <span>
+                                <i class="fas fa-gears"></i>
+                                Manual
+                            </span>
+
+                            <span>
+                                <i class="fas fa-user-group"></i>
+                                5 Seats
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="rental-interest-btn interest-btn"
+                            data-rental-vehicle="Maruti Suzuki Swift"
+                            data-rental-rate="1499"
+                        >
+                            Check Availability
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RENTAL 04 -->
+
+                <article
+                    class="vehicle-card rental-card"
+                    data-rental-name="Hyundai Creta"
+                    data-rental-category="suv premium"
+                >
+
+                    <div class="vehicle-image">
+
+                        <img
+                            src="images/rental/hyundai-creta.jpg"
+                            alt="Hyundai Creta"
+                            loading="lazy"
+                        >
+
+                        <span class="vehicle-tag">
+                            PREMIUM
+                        </span>
+
+                        <span class="vehicle-category-badge">
+                            SUV
+                        </span>
+
+                    </div>
+
+
+                    <div class="vehicle-info">
+
+                        <div class="vehicle-title-row">
+
+                            <div>
+
+                                <h3>
+                                    Hyundai Creta
+                                </h3>
+
+                                <span>
+                                    Premium SUV
+                                </span>
+
+                            </div>
+
+                            <strong class="vehicle-price">
+                                ₹2,299/day
+                            </strong>
+
+                        </div>
+
+
+                        <div class="vehicle-specs">
+
+                            <span>
+                                <i class="fas fa-gas-pump"></i>
+                                Petrol
+                            </span>
+
+                            <span>
+                                <i class="fas fa-gears"></i>
+                                Automatic
+                            </span>
+
+                            <span>
+                                <i class="fas fa-user-group"></i>
+                                5 Seats
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="rental-interest-btn interest-btn"
+                            data-rental-vehicle="Hyundai Creta"
+                            data-rental-rate="2299"
+                        >
+                            Check Availability
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RENTAL 05 -->
+
+                <article
+                    class="vehicle-card rental-card"
+                    data-rental-name="Toyota Innova Crysta"
+                    data-rental-category="suv premium"
+                >
+
+                    <div class="vehicle-image">
+
+                        <img
+                            src="images/rental/innova-crysta.jpg"
+                            alt="Toyota Innova Crysta"
+                            loading="lazy"
+                        >
+
+                        <span class="vehicle-tag">
+                            FAMILY
+                        </span>
+
+                        <span class="vehicle-category-badge">
+                            SUV
+                        </span>
+
+                    </div>
+
+
+                    <div class="vehicle-info">
+
+                        <div class="vehicle-title-row">
+
+                            <div>
+
+                                <h3>
+                                    Toyota Innova Crysta
+                                </h3>
+
+                                <span>
+                                    Premium Family SUV
+                                </span>
+
+                            </div>
+
+                            <strong class="vehicle-price">
+                                ₹2,999/day
+                            </strong>
+
+                        </div>
+
+
+                        <div class="vehicle-specs">
+
+                            <span>
+                                <i class="fas fa-gas-pump"></i>
+                                Diesel
+                            </span>
+
+                            <span>
+                                <i class="fas fa-gears"></i>
+                                Automatic
+                            </span>
+
+                            <span>
+                                <i class="fas fa-user-group"></i>
+                                7 Seats
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="rental-interest-btn interest-btn"
+                            data-rental-vehicle="Toyota Innova Crysta"
+                            data-rental-rate="2999"
+                        >
+                            Check Availability
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- RENTAL 06 -->
+
+                <article
+                    class="vehicle-card rental-card"
+                    data-rental-name="Mahindra Thar"
+                    data-rental-category="suv premium"
+                >
+
+                    <div class="vehicle-image">
+
+                        <img
+                            src="images/rental/mahindra-thar.jpg"
+                            alt="Mahindra Thar"
+                            loading="lazy"
+                        >
+
+                        <span class="vehicle-tag">
+                            ADVENTURE
+                        </span>
+
+                        <span class="vehicle-category-badge">
+                            SUV
+                        </span>
+
+                    </div>
+
+
+                    <div class="vehicle-info">
+
+                        <div class="vehicle-title-row">
+
+                            <div>
+
+                                <h3>
+                                    Mahindra Thar
+                                </h3>
+
+                                <span>
+                                    Adventure SUV
+                                </span>
+
+                            </div>
+
+                            <strong class="vehicle-price">
+                                ₹2,499/day
+                            </strong>
+
+                        </div>
+
+
+                        <div class="vehicle-specs">
+
+                            <span>
+                                <i class="fas fa-gas-pump"></i>
+                                Diesel
+                            </span>
+
+                            <span>
+                                <i class="fas fa-gears"></i>
+                                Manual
+                            </span>
+
+                            <span>
+                                <i class="fas fa-user-group"></i>
+                                4 Seats
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="rental-interest-btn interest-btn"
+                            data-rental-vehicle="Mahindra Thar"
+                            data-rental-rate="2499"
+                        >
+                            Check Availability
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+            <!-- NO RESULTS -->
+
+            <div
+                class="no-results"
+                id="rentalNoResults"
+                hidden
+            >
+
+                <i class="fas fa-car-side"></i>
+
+                <h3>
+                    No vehicle found
+                </h3>
+
+                <p>
+                    Try another vehicle name or category.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             HOW RENTING WORKS
+        ================================================== -->
+
+        <section class="trust-section">
+
+            <div class="trust-content">
+
+                <span class="section-kicker">
+                    SIMPLE PROCESS
+                </span>
+
+                <h2>
+                    Rent without
+                    <span>the unnecessary hassle.</span>
+                </h2>
+
+                <p>
+                    Choose your vehicle, share your dates
+                    and let our team handle the rest.
+                </p>
+
+            </div>
+
+
+            <div class="trust-grid">
+
+
+                <div class="trust-item">
+
+                    <div class="trust-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Choose your vehicle
+                        </h3>
+
+                        <p>
+                            Select the vehicle that fits
+                            your trip and requirements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <div class="trust-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Share your dates
+                        </h3>
+
+                        <p>
+                            Tell us when you need the vehicle
+                            and how long you need it.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trust-item">
+
+                    <div class="trust-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Get confirmation
+                        </h3>
+
+                        <p>
+                            Our team checks availability and
+                            contacts you with the final details.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RENTAL CTA
+        ================================================== -->
+
+        <section class="sell-cta">
+
+            <div>
+
+                <span class="section-kicker">
+                    NEED HELP?
+                </span>
+
+                <h2>
+                    Can't decide which vehicle to rent?
+                </h2>
+
+                <p>
+                    Contact our team and tell us about your
+                    trip. We'll help you choose the right vehicle.
+                </p>
+
+            </div>
+
+
+            <a
+                href="tel:+91XXXXXXXXXX"
+                class="sell-cta-btn"
+            >
+                Contact Us
+                <i class="fas fa-phone"></i>
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         RENTAL BOOKING MODAL
+    ====================================================== -->
+
+    <div
+        class="interest-modal"
+        id="rentalModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="interest-overlay"
+            id="rentalModalOverlay"
+        ></div>
+
+
+        <div
+            class="interest-box"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rentalModalTitle"
+        >
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeRentalModal"
+                aria-label="Close"
+            >
+                <i class="fas fa-times"></i>
+            </button>
+
+
+            <div
+                id="rentalFormContainer"
+            >
+
+                <span class="section-kicker">
+                    RENTAL REQUEST
+                </span>
+
+
+                <h2 id="rentalModalTitle">
+                    Check vehicle availability.
+                </h2>
+
+
+                <p class="modal-description">
+                    Tell us your rental dates and contact
+                    details. We'll confirm availability.
+                </p>
+
+
+                <div class="selected-vehicle">
+
+                    <div>
+
+                        <span>
+                            VEHICLE
+                        </span>
+
+                        <strong id="rentalVehicleName">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            STARTING RATE
+                        </span>
+
+                        <strong id="rentalVehicleRate">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="rentalForm"
+                    novalidate
+                >
+
+                    <input
+                        type="hidden"
+                        id="rentalVehicleInput"
+                        name="vehicle"
+                    >
+
+
+                    <input
+                        type="hidden"
+                        id="rentalRateInput"
+                        name="rate"
+                    >
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="rentalStartDate">
+                                Pickup Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="rentalStartDate"
+                                name="pickupDate"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="rentalEndDate">
+                                Return Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="rentalEndDate"
+                                name="returnDate"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="rentalCustomerName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="rentalCustomerName"
+                                name="customerName"
+                                placeholder="Your full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="rentalPhone">
+                                Mobile Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="rentalPhone"
+                                name="phone"
+                                placeholder="10 digit mobile number"
+                                maxlength="10"
+                                inputmode="numeric"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="rentalCity">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            id="rentalCity"
+                            name="city"
+                            placeholder="Your city"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="rentalMessage">
+                            Additional Requirement
+                            <span>Optional</span>
+                        </label>
+
+                        <textarea
+                            id="rentalMessage"
+                            name="message"
+                            rows="3"
+                            placeholder="Tell us anything about your rental requirement..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="modal-submit"
+                        id="rentalSubmit"
+                    >
+                        Send Rental Request
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- SUCCESS -->
+
+            <div
+                class="success-state"
+                id="rentalSuccess"
+                hidden
+            >
+
+                <div class="success-icon">
+
+                    <i class="fas fa-check"></i>
+
+                </div>
+
+
+                <span class="section-kicker">
+                    REQUEST RECEIVED
+                </span>
+
+
+                <h2>
+                    Rental request received.
+                </h2>
+
+
+                <p>
+                    Our team will check availability
+                    and contact you shortly.
+                </p>
+
+
+                <div
+                    class="lead-reference"
+                    id="rentalReference"
+                ></div>
+
+
+                <button
+                    type="button"
+                    class="success-close"
+                    id="rentalSuccessClose"
+                >
+                    Done
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-main">
+
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    <span class="brand-mark">
+                        SM
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            SHAHEBAZ
+                        </strong>
+
+                        <small>
+                            MOTORS
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <p>
+                    A different way to find your next vehicle.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="two-wheeler.html">
+                    Two Wheelers
+                </a>
+
+                <a href="three-wheeler.html">
+                    Three Wheelers
+                </a>
+
+                <a href="four-wheeler.html">
+                    Four Wheelers
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Services
+                </h4>
+
+                <a href="rental.html">
+                    Rent a Vehicle
+                </a>
+
+                <a href="sell.html">
+                    Sell Your Vehicle
+                </a>
+
+                <a href="#">
+                    Contact Us
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Contact
+                </h4>
+
+                <a
+                    href="https://wa.me/91XXXXXXXXXX"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="WhatsApp"
+                >
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+
+                <a
+                    href="https://www.instagram.com/YOUR_INSTAGRAM_USERNAME/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                >
+                    <i class="fab fa-instagram"></i>
+                    Instagram
+                </a>
+
+                <span>
+                    <i class="fas fa-location-dot"></i>
+                    Maharashtra, India
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © <span id="currentYear"></span>
+                Shahebaz Motors
+            </span>
+
+            <span>
+                Built for the road ahead.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         GLOBAL JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
