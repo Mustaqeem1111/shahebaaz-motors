@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operate | Shahebaz Motors Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="operations.css">
+</head>
+<body class="admin-body">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <div class="admin-brand-logo">SM</div>
+                <div><h2>Shahebaz Motors</h2><span>Admin Panel</span></div>
+            </div>
+            <nav class="admin-navigation" aria-label="Admin navigation">
+                <a href="dashboard.html" class="admin-nav-link"><span>▦</span>Dashboard</a>
+                <a href="vehicles.html" class="admin-nav-link"><span>🚗</span>Vehicles</a>
+                <a href="enquiries.html" class="admin-nav-link"><span>✉</span>Enquiries</a>
+                <a href="rentals.html" class="admin-nav-link"><span>🔑</span>Rentals</a>
+                <a href="sell-request.html" class="admin-nav-link"><span>🚘</span>Sell Requests</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <a href="../index.html" target="_blank" class="admin-nav-link"><span>↗</span>View Website</a>
+                <button type="button" id="logoutButton" class="logout-button"><span>↪</span>Logout</button>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-topbar">
+                <div><p class="admin-eyebrow">WEBSITE SETTINGS</p><h1>Operate</h1></div>
+                <div class="admin-user"><div class="admin-user-avatar">A</div><div><strong>Administrator</strong><span>Shahebaz Motors</span></div></div>
+            </header>
+
+            <section class="operate-intro">
+                <p>Choose which services your customers can see on the website.</p>
+                <p>Turning a service off hides its pages and stops new requests. Existing vehicles and requests stay saved.</p>
+            </section>
+
+            <form id="siteServicesForm" class="operate-settings" novalidate>
+                <article class="operate-service-card">
+                    <div class="operate-service-icon" aria-hidden="true">🏍</div>
+                    <div class="operate-service-copy"><h2>2-wheelers</h2><p>Show two-wheeler listings, navigation and request options.</p></div>
+                    <label class="operate-switch"><span class="visually-hidden">Enable 2-wheelers</span><input type="checkbox" data-service-setting="2WHEELER" disabled><span class="operate-switch-track" aria-hidden="true"></span></label>
+                </article>
+                <article class="operate-service-card">
+                    <div class="operate-service-icon" aria-hidden="true">🛺</div>
+                    <div class="operate-service-copy"><h2>3-wheelers</h2><p>Show three-wheeler listings, navigation and request options.</p></div>
+                    <label class="operate-switch"><span class="visually-hidden">Enable 3-wheelers</span><input type="checkbox" data-service-setting="3WHEELER" disabled><span class="operate-switch-track" aria-hidden="true"></span></label>
+                </article>
+                <article class="operate-service-card">
+                    <div class="operate-service-icon" aria-hidden="true">🚘</div>
+                    <div class="operate-service-copy"><h2>4-wheelers</h2><p>Show four-wheeler listings, navigation and request options.</p></div>
+                    <label class="operate-switch"><span class="visually-hidden">Enable 4-wheelers</span><input type="checkbox" data-service-setting="4WHEELER" disabled><span class="operate-switch-track" aria-hidden="true"></span></label>
+                </article>
+                <article class="operate-service-card">
+                    <div class="operate-service-icon" aria-hidden="true">🔑</div>
+                    <div class="operate-service-copy"><h2>Rentals</h2><p>Show the rental website, fleet and booking request form.</p></div>
+                    <label class="operate-switch"><span class="visually-hidden">Enable rentals</span><input type="checkbox" data-service-setting="RENTALS" disabled><span class="operate-switch-track" aria-hidden="true"></span></label>
+                </article>
+
+                <div class="operate-actions">
+                    <p id="servicesNotice" role="status" aria-live="polite"></p>
+                    <button type="submit" id="saveServicesButton" class="admin-button" disabled>Save changes</button>
+                </div>
+            </form>
+
+            <footer class="admin-footer"><span>© 2026 Shahebaz Motors</span><span>Website Operations</span></footer>
+        </main>
+    </div>
+    <script src="admin.js"></script>
+    <script src="operations.js"></script>
+</body>
+</html>

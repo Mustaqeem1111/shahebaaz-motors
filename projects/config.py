@@ -1,9 +1,12 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # =========================================================
 # SHAHEBAZ MOTORS CONFIGURATION
-# config.py (UPDATED - PHOTO UPLOAD SUPPORT)
+# config.py (UPDATED - PASSWORD REMOVED)
 # =========================================================
 
 BASE_DIR = os.path.dirname(
@@ -29,24 +32,49 @@ HOST = "0.0.0.0"
 
 PORT = 5000
 
-DEBUG = True
+DEBUG = False
 
 
 # =========================================================
 # ADMIN
 # =========================================================
+# NOTE: ADMIN_PASSWORD hata diya — sirf database se login hoga
 
 ADMIN_USERNAME = os.getenv(
     "SHAHEBAZ_ADMIN_USERNAME",
-    "admin"
+    "adminn"
 )
 
-ADMIN_PASSWORD = os.getenv(
-    "SHAHEBAZ_ADMIN_PASSWORD",
-    "admin123"
+ADMIN_EMAIL = os.getenv(
+    "SHAHEBAZ_ADMIN_EMAIL",
+    ""
 )
 
 ADMIN_SESSION_TIMEOUT = 3600
+
+
+# =========================================================
+# EMAIL SETTINGS (Brevo SMTP)
+# =========================================================
+
+BREVO_SMTP_SERVER = os.getenv(
+    "BREVO_SMTP_SERVER",
+    "smtp-relay.brevo.com"
+)
+
+BREVO_SMTP_PORT = int(
+    os.getenv("BREVO_SMTP_PORT", "587")
+)
+
+BREVO_SMTP_LOGIN = os.getenv(
+    "BREVO_SMTP_LOGIN",
+    ""
+)
+
+BREVO_SMTP_PASSWORD = os.getenv(
+    "BREVO_SMTP_PASSWORD",
+    ""
+)
 
 
 # =========================================================
@@ -58,8 +86,6 @@ UPLOAD_FOLDER = os.path.join(
     "uploads"
 )
 
-# Allowed image extensions (lowercase, without dot)
-
 ALLOWED_IMAGE_EXTENSIONS = {
     "jpg",
     "jpeg",
@@ -67,8 +93,6 @@ ALLOWED_IMAGE_EXTENSIONS = {
     "webp",
     "gif"
 }
-
-# Maximum upload size per photo: 8 MB
 
 MAX_UPLOAD_SIZE = 8 * 1024 * 1024
 
@@ -91,3 +115,10 @@ SERVICE_LONGITUDE = 75.9064
 APP_NAME = "Shahebaz Motors"
 
 APP_VERSION = "1.0.0"
+
+
+# =========================================================
+# PASSWORD RESET
+# =========================================================
+
+RESET_TOKEN_EXPIRY_MINUTES = 15

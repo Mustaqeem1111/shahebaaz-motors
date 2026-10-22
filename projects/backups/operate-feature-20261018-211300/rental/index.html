@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse vehicles listed for rent by Shahebaz Motors and send us the dates you need.">
+  <meta name="theme-color" content="#244f48">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <title>Vehicle Rentals | Shahebaz Motors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rental.css">
+  <script src="rental.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="../index.html" aria-label="Shahebaz Motors home"><span>SHAHEBAZ</span><small>MOTORS</small></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primaryNav"><span></span><span></span></button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="#vehicles">Vehicles</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="button button--green header-action" href="#vehicles">See available vehicles</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> VEHICLE RENTALS · SHAHEBAZ MOTORS</p>
+        <h1 id="heroTitle">Need a vehicle<br>for a few days?</h1>
+        <p>See what’s available, send us your dates, and our team will confirm the rate and pickup details.</p>
+        <a class="text-link" href="#vehicles">Browse the rental list <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="route-card" aria-label="A simple route illustration">
+        <div class="route-card-top"><span>Make your next trip easier</span><span class="route-pin" aria-hidden="true">↗</span></div>
+        <svg class="route-drawing" viewBox="0 0 520 250" role="img" aria-label="A route from town to your destination">
+          <path class="route-road-shadow" d="M40 193C111 185 111 71 200 94c72 19 35 117 113 106 78-12 73-111 166-126" />
+          <path class="route-road" d="M40 193C111 185 111 71 200 94c72 19 35 117 113 106 78-12 73-111 166-126" />
+          <circle class="route-stop" cx="40" cy="193" r="10" />
+          <circle class="route-stop route-stop--end" cx="479" cy="74" r="12" />
+          <path class="route-dash" d="M48 190C114 180 117 80 198 101c65 17 39 113 113 104 71-9 77-105 159-126" />
+          <g class="route-label route-label--start"><rect x="20" y="213" width="76" height="25" rx="12"/><text x="58" y="230" text-anchor="middle">START</text></g>
+          <g class="route-label route-label--end"><rect x="422" y="27" width="96" height="25" rx="12"/><text x="470" y="44" text-anchor="middle">YOUR DAY</text></g>
+        </svg>
+        <div class="route-card-bottom"><strong>Pick your dates.</strong><span>We’ll take it from there.</span></div>
+      </div>
+    </section>
+
+    <section class="collection section-wrap" id="vehicles" aria-labelledby="collectionTitle">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE RENTAL FLEET</p><h2 id="collectionTitle">Vehicles listed for rent</h2></div>
+        <p>Rates are per day. Our team will confirm the vehicle is free for your dates.</p>
+      </div>
+
+      <div class="collection-tools">
+        <label class="search-field">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.2 4.2"></path></svg>
+          <span class="visually-hidden">Search vehicles</span>
+          <input id="vehicleSearch" type="search" placeholder="Search by vehicle name" autocomplete="off">
+        </label>
+        <div class="filter-list" role="group" aria-label="Filter vehicles">
+          <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-button" type="button" data-filter="2WHEELER" aria-pressed="false">Two wheelers</button>
+          <button class="filter-button" type="button" data-filter="3WHEELER" aria-pressed="false">Three wheelers</button>
+          <button class="filter-button" type="button" data-filter="4WHEELER" aria-pressed="false">Cars</button>
+        </div>
+      </div>
+
+      <p class="inventory-state" id="inventoryStatus" role="status" aria-live="polite">Loading the rental list…</p>
+      <div class="vehicle-grid" id="vehicleGrid" aria-live="polite"></div>
+      <p class="inventory-empty" id="inventoryEmpty" hidden>There are no vehicles listed for rent right now. Please check back soon.</p>
+      <p class="no-results" id="noResults" hidden>No vehicles match that search. Try another name or filter.</p>
+    </section>
+
+    <section class="process-section" id="how-it-works" aria-labelledby="processTitle">
+      <div class="section-wrap">
+        <div class="section-heading section-heading--wide"><div><p class="eyebrow">THREE SIMPLE STEPS</p><h2 id="processTitle">From enquiry to keys.</h2></div><p>Send a request first. We’ll confirm the details with you before anything is final.</p></div>
+        <ol class="process-list">
+          <li><span>01</span><div><h3>Choose a vehicle</h3><p>Pick from the vehicles our team has listed for rent.</p></div></li>
+          <li><span>02</span><div><h3>Tell us your dates</h3><p>Share your pickup and return dates, along with your contact details.</p></div></li>
+          <li><span>03</span><div><h3>We’ll call to confirm</h3><p>Our team will check availability and talk through the rate and pickup.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contactTitle">
+      <div class="contact-inner section-wrap">
+        <div><p class="eyebrow">NEED A HAND?</p><h2 id="contactTitle">Not sure what to book?</h2><p>Tell us where you’re going and we’ll help you choose a vehicle.</p></div>
+        <a class="button button--light" href="../contact.html">Talk to our team <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="wordmark" href="../index.html" aria-label="Shahebaz Motors home"><span>SHAHEBAZ</span><small>MOTORS</small></a>
+    <p>Local help for your next journey.</p>
+    <nav aria-label="Footer navigation"><a href="../index.html">Home</a><a href="#vehicles">Vehicles</a><a href="#how-it-works">How it works</a><a href="../contact.html">Contact</a></nav>
+    <small>© <span id="currentYear"></span> Shahebaz Motors</small>
+  </footer>
+
+  <dialog class="booking-dialog" id="bookingDialog" aria-labelledby="bookingTitle">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="Close booking form">×</button>
+    <div class="dialog-content" id="bookingContent">
+      <p class="dialog-label">RENTAL REQUEST</p>
+      <h2 id="bookingTitle">Tell us when you need it.</h2>
+      <p class="dialog-intro">We’ll check the dates and call you to confirm the details.</p>
+      <div class="selected-vehicle"><div><span>Vehicle</span><strong id="selectedVehicle">—</strong></div><div><span>Daily rate</span><strong id="selectedRate">—</strong></div></div>
+      <form id="rentalForm">
+        <input type="hidden" name="vehicleId" id="rentalVehicleId">
+        <input type="hidden" name="vehicle" id="rentalVehicle">
+        <input type="hidden" name="rate" id="rentalRate">
+        <div class="form-row"><label>Pickup date<input type="date" name="pickupDate" id="pickupDate" required></label><label>Return date<input type="date" name="returnDate" id="returnDate" required></label></div>
+        <div class="form-row"><label>Full name<input type="text" name="customerName" autocomplete="name" placeholder="Your full name" maxlength="100" required></label><label>Mobile number<input type="tel" name="phone" autocomplete="tel-national" inputmode="numeric" placeholder="10 digit mobile number" maxlength="10" pattern="[6-9][0-9]{9}" title="Enter a valid 10-digit Indian mobile number" required></label></div>
+        <label>City<input type="text" name="city" autocomplete="address-level2" placeholder="Your city" maxlength="80" required></label>
+        <label>Anything else we should know? <span class="optional">Optional</span><textarea name="message" rows="3" maxlength="500" placeholder="For example, how many people are travelling"></textarea></label>
+        <p class="form-message" id="formMessage" role="alert" hidden></p>
+        <button class="button button--green submit-button" id="submitRental" type="submit">Send rental request <span aria-hidden="true">→</span></button>
+      </form>
+    </div>
+    <div class="booking-success" id="bookingSuccess" hidden><span class="success-mark" aria-hidden="true">✓</span><p class="dialog-label">REQUEST RECEIVED</p><h2>Thanks, we have your request.</h2><p>Our team will check availability and contact you shortly.</p><p class="reference" id="requestReference"></p><button class="button button--green" type="button" data-close-dialog>Done</button></div>
+  </dialog>
+</body>
+</html>

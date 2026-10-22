@@ -571,12 +571,82 @@ function getVehicleFormData() {
 /* =========================================================
    PHOTO HANDLING (VEHICLES)
 ========================================================= */
+async function compressImage(file, maxWidth = 1000, maxHeight = 1000, quality = 0.7) {
+    return new Promise((resolve, reject) => {
+        if (!file.type.startsWith("image/")) {
+            reject(new Error("Not an image"));
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            const img = new Image();
+
+            img.onload = () => {
+                let width = img.width;
+                let height = img.height;
+
+                if (width > maxWidth || height > maxHeight) {
+                    const ratio = Math.min(maxWidth / width, maxHeight / height);
+                    width = Math.round(width * ratio);
+                    height = Math.round(height * ratio);
+                }
+
+                const canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx = canvas.getContext("2d");
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = "high";
+                ctx.drawImage(img, 0, 0, width, height);
+
+                canvas.toBlob(
+                    (blob) => {
+                        if (!blob) {
+                            reject(new Error("Compression failed"));
+                            return;
+                        }
+
+                        const originalSize = file.size;
+                        const compressedSize = blob.size;
+                        const saving = ((1 - compressedSize / originalSize) * 100).toFixed(1);
+
+                        console.log(
+                            `📸 Compressed: ${(originalSize / 1024).toFixed(1)} KB → ${(compressedSize / 1024).toFixed(1)} KB (${saving}% saved)`
+                        );
+
+                        const compressedFile = new File(
+                            [blob],
+                            file.name.replace(/\.[^/.]+$/, ".jpg"),
+                            {
+                                type: "image/jpeg",
+                                lastModified: Date.now()
+                            }
+                        );
+
+                        resolve(compressedFile);
+                    },
+                    "image/jpeg",
+                    quality
+                );
+            };
+
+            img.onerror = () => reject(new Error("Failed to load image"));
+            img.src = e.target.result;
+        };
+
+        reader.onerror = () => reject(new Error("Failed to read file"));
+        reader.readAsDataURL(file);
+    });
+}
 
 function initializePhotoUpload() {
     const photoInput = $("vehiclePhotos");
     if (!photoInput) return;
 
-    photoInput.addEventListener("change", () => {
+    photoInput.addEventListener("change", async () => {
         const newFiles = Array.from(photoInput.files);
 
         const totalCount = existingPhotos.length + selectedPhotoFiles.length + newFiles.length;
@@ -586,6 +656,7 @@ function initializePhotoUpload() {
             return;
         }
 
+        // Check each file size (before compression)
         for (const file of newFiles) {
             if (file.size > 8 * 1024 * 1024) {
                 alert(`File "${file.name}" is larger than 8MB. Please select a smaller file.`);
@@ -594,9 +665,33 @@ function initializePhotoUpload() {
             }
         }
 
-        selectedPhotoFiles = [...selectedPhotoFiles, ...newFiles];
-        photoInput.value = "";
-        renderPhotoPreview();
+        // Show loading state
+        const label = document.querySelector(".photo-upload-label strong");
+        if (label) label.textContent = "Compressing...";
+
+        try {
+            const compressedFiles = [];
+
+            for (const file of newFiles) {
+                try {
+                    const compressed = await compressImage(file, 1000, 1000, 0.7);
+                    compressedFiles.push(compressed);
+                } catch (error) {
+                    console.error("Compression error:", error);
+                    compressedFiles.push(file);
+                }
+            }
+
+            selectedPhotoFiles = [...selectedPhotoFiles, ...compressedFiles];
+            photoInput.value = "";
+            renderPhotoPreview();
+
+        } catch (error) {
+            console.error("Photo upload error:", error);
+            alert("Failed to process photos. Please try again.");
+        } finally {
+            if (label) label.textContent = "Click to select photos";
+        }
     });
 }
 
@@ -880,6 +975,18 @@ function setText(id, value) {
 ========================================================= */
 
 function initializeAdmin() {
+    const adminNavigation = document.querySelector(".admin-navigation");
+    if (adminNavigation && !adminNavigation.querySelector('a[href="operations.html"]')) {
+        const operateLink = document.createElement("a");
+        operateLink.href = "operations.html";
+        operateLink.className = "admin-nav-link";
+        operateLink.innerHTML = "<span>⚙</span> Operate";
+        if (window.location.pathname.toLowerCase().endsWith("operations.html")) {
+            operateLink.classList.add("active");
+        }
+        adminNavigation.appendChild(operateLink);
+    }
+
     initializeLoginPage();
 
     const isLoginPage = window.location.pathname.toLowerCase().endsWith("login.html");

@@ -18,6 +18,7 @@
         rel="stylesheet"
         href="admin.css"
     >
+    <link rel="stylesheet" href="rental-fleet.css">
 
 </head>
 
@@ -148,9 +149,7 @@
                         RENTAL MANAGEMENT
                     </p>
 
-                    <h1>
-                        Rental Requests
-                    </h1>
+                    <h1>Rentals</h1>
 
                 </div>
 
@@ -269,6 +268,32 @@
 
             </section>
 
+
+
+            <!-- RENTAL FLEET -->
+
+            <section class="dashboard-section" id="rentalFleetSection">
+                <div class="section-heading rental-fleet-heading">
+                    <div>
+                        <p class="admin-eyebrow">PUBLIC RENTAL LIST</p>
+                        <h2>Rental fleet</h2>
+                        <p>Add vehicles here to show them on the rental website.</p>
+                    </div>
+                    <button type="button" id="addRentalVehicleButton" class="admin-button">+ Add rental vehicle</button>
+                </div>
+
+                <p class="rental-fleet-notice" id="rentalFleetNotice" role="status" aria-live="polite"></p>
+                <div class="table-container">
+                    <table class="admin-table rental-fleet-table">
+                        <thead>
+                            <tr><th>Photo</th><th>Vehicle</th><th>Type</th><th>Rate / day</th><th>Action</th></tr>
+                        </thead>
+                        <tbody id="rentalFleetTable">
+                            <tr><td colspan="5" class="table-loading">Loading rental vehicles...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
 
             <!-- FILTERS + TABLE -->
@@ -397,6 +422,78 @@
 
 
 
+    <!-- ADD RENTAL VEHICLE -->
+    <div id="rentalVehicleModal" class="admin-modal" aria-hidden="true">
+        <div class="admin-modal-overlay"></div>
+        <div class="admin-modal-card vehicle-modal-card">
+            <div class="admin-modal-header">
+                <div><p class="admin-eyebrow">PUBLIC RENTAL LIST</p><h2>Add a rental vehicle</h2></div>
+                <button type="button" id="closeRentalVehicleModal" class="modal-close" aria-label="Close">×</button>
+            </div>
+            <form id="rentalVehicleForm" class="rental-fleet-form">
+                <div class="form-grid">
+                    <div class="form-group form-group-full">
+                        <label for="rentalVehicleName">Vehicle name *</label>
+                        <input id="rentalVehicleName" name="vehicle_name" type="text" maxlength="120" placeholder="e.g. Maruti Swift" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rentalVehicleCategory">Type *</label>
+                        <select id="rentalVehicleCategory" name="category" required>
+                            <option value="">Select type</option><option value="2WHEELER">Two wheeler</option><option value="3WHEELER">Three wheeler</option><option value="4WHEELER">Car</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rentalVehicleRate">Daily rate (₹) *</label>
+                        <input id="rentalVehicleRate" name="rental_price" type="number" min="1" step="1" placeholder="1500" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rentalVehicleBrand">Brand</label>
+                        <input id="rentalVehicleBrand" name="brand" type="text" maxlength="80" placeholder="Maruti Suzuki">
+                    </div>
+                    <div class="form-group">
+                        <label for="rentalVehicleModel">Model</label>
+                        <input id="rentalVehicleModel" name="model" type="text" maxlength="80" placeholder="Swift VXi">
+                    </div>
+                    <div class="form-group">
+                        <label for="rentalVehicleYear">Year</label>
+                        <input id="rentalVehicleYear" name="year" type="number" min="1980" max="2035" placeholder="2022">
+                    </div>
+                    <div class="form-group">
+                        <label for="rentalVehicleSeats">Seats</label>
+                        <input id="rentalVehicleSeats" name="seats" type="number" min="1" max="20" placeholder="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="rentalVehicleFuel">Fuel</label>
+                        <select id="rentalVehicleFuel" name="fuel_type">
+                            <option value="">Select fuel</option><option value="PETROL">Petrol</option><option value="DIESEL">Diesel</option><option value="CNG">CNG</option><option value="ELECTRIC">Electric</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rentalVehicleTransmission">Transmission</label>
+                        <select id="rentalVehicleTransmission" name="transmission">
+                            <option value="">Select transmission</option><option value="MANUAL">Manual</option><option value="AUTOMATIC">Automatic</option><option value="AMT">AMT</option><option value="CVT">CVT</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-group-full">
+                        <label for="rentalVehicleDescription">Notes</label>
+                        <textarea id="rentalVehicleDescription" name="description" rows="3" maxlength="1000" placeholder="Any useful details for customers"></textarea>
+                    </div>
+                    <div class="form-group form-group-full">
+                        <label for="rentalVehiclePhotos">Vehicle photos</label>
+                        <input id="rentalVehiclePhotos" name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+                        <small class="form-hint">Use clear photos of the actual vehicle. Up to 4 images, 8 MB each. Without a photo, the website shows a simple placeholder.</small>
+                    </div>
+                </div>
+                <p class="rental-fleet-form-error" id="rentalVehicleFormError" role="alert"></p>
+                <div class="modal-actions">
+                    <button type="button" id="cancelRentalVehicle" class="admin-button secondary">Cancel</button>
+                    <button type="submit" id="saveRentalVehicle" class="admin-button">Add to rentals</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
     <!-- =====================================================
          RENTAL DETAILS MODAL
     ====================================================== -->
@@ -470,6 +567,7 @@
     ====================================================== -->
 
     <script src="admin.js"></script>
+    <script src="rental-fleet.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

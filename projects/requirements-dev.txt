@@ -1,0 +1,24 @@
+# =========================================================
+# SHAHEBAZ MOTORS - DEVELOPMENT DEPENDENCIES
+# requirements-dev.txt
+# Testing tools only (not for production)
+# Install with: pip install -r requirements-dev.txt
+# =========================================================
+
+# ---------- TESTING FRAMEWORK ----------
+pytest==8.3.4
+pytest-flask==1.3.0
+pytest-cov==6.0.0
+
+# ---------- API TESTING ----------
+requests==2.32.3
+
+# ---------- CODE QUALITY ----------
+pylint==3.3.3
+flake8==7.1.1
+
+# ---------- SECURITY SCANNING ----------
+bandit==1.8.0
+
+# ---------- COVERAGE ----------
+coverage==7.6.10

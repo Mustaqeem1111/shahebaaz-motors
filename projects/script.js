@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedVehicleName = document.getElementById("selectedVehicleName");
     const selectedVehiclePrice = document.getElementById("selectedVehiclePrice");
     const leadVehicle = document.getElementById("leadVehicle");
+    const leadVehicleId = document.getElementById("leadVehicleId");
     const leadPrice = document.getElementById("leadPrice");
     const leadReference = document.getElementById("leadReference");
 
@@ -223,6 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         class="interest-btn"
                         type="button"
                         data-vehicle="${escapeHtml(name)}"
+                        data-vehicle-id="${escapeHtml(String(id))}"
                         data-price="${Number(price) || 0}"
                     >
                         I'm Interested
@@ -245,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         const vehicle = btn.dataset.vehicle || "";
+        const vehicleId = btn.dataset.vehicleId || "";
         const price = btn.dataset.price || "0";
 
         if (selectedVehicleName) selectedVehicleName.textContent = vehicle;
@@ -252,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
             selectedVehiclePrice.textContent = "₹" + Number(price).toLocaleString("en-IN");
         }
         if (leadVehicle) leadVehicle.value = vehicle;
+        if (leadVehicleId) leadVehicleId.value = vehicleId;
         if (leadPrice) leadPrice.value = price;
 
         if (interestFormContainer) interestFormContainer.style.display = "";
@@ -262,6 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (interestForm) interestForm.reset();
         if (leadVehicle) leadVehicle.value = vehicle;
+        if (leadVehicleId) leadVehicleId.value = vehicleId;
         if (leadPrice) leadPrice.value = price;
 
         if (interestModal) {
@@ -360,6 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         customer_name: name,
                         phone: phone,
                         city: city,
+                        vehicle_id: leadVehicleId?.value || null,
                         vehicle_name: vehicle,
                         vehicle_price: Number(price),
                         enquiry_type: "PURCHASE",
@@ -517,264 +523,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =====================================================
-       RENTAL SEARCH
-    ===================================================== */
-
-    const rentalSearch = document.getElementById("rentalSearch");
-    const rentalGrid = document.getElementById("rentalGrid");
-    const rentalNoResults = document.getElementById("rentalNoResults");
-
-    if (rentalSearch && rentalGrid) {
-        rentalSearch.addEventListener("input", filterRentalVehicles);
-    }
-
-    function filterRentalVehicles() {
-        if (!rentalGrid) return;
-
-        const search = rentalSearch ? rentalSearch.value.trim().toLowerCase() : "";
-
-        const activeRentalFilter =
-            document.querySelector("[data-rental-filter].active")?.dataset.rentalFilter || "all";
-
-        const cards = rentalGrid.querySelectorAll(".rental-card");
-        let visibleCount = 0;
-
-        cards.forEach(card => {
-            const name = (card.dataset.rentalName || card.textContent).toLowerCase();
-            const category = (card.dataset.rentalCategory || "").toLowerCase();
-
-            const searchMatch = !search || name.includes(search);
-            const filterMatch =
-                activeRentalFilter === "all" ||
-                category.split(" ").includes(activeRentalFilter);
-
-            if (searchMatch && filterMatch) {
-                card.style.display = "";
-                visibleCount++;
-            } else {
-                card.style.display = "none";
-            }
-        });
-
-        if (rentalNoResults) rentalNoResults.hidden = visibleCount !== 0;
-    }
-
-    /* =====================================================
-       RENTAL FILTER PANEL + CHIPS
-    ===================================================== */
-
-    const rentalFilterToggle = document.getElementById("rentalFilterToggle");
-    const rentalFilterPanel = document.getElementById("rentalFilterPanel");
-
-    if (rentalFilterToggle && rentalFilterPanel) {
-        rentalFilterToggle.addEventListener("click", () => {
-            rentalFilterPanel.classList.toggle("open");
-        });
-    }
-
-    const rentalFilterChips = document.querySelectorAll("[data-rental-filter]");
-
-    rentalFilterChips.forEach(chip => {
-        chip.addEventListener("click", () => {
-            rentalFilterChips.forEach(item => item.classList.remove("active"));
-            chip.classList.add("active");
-            filterRentalVehicles();
-        });
-    });
-
-    /* =====================================================
-       RENTAL MODAL
-    ===================================================== */
-
-    const rentalModal = document.getElementById("rentalModal");
-    const rentalModalOverlay = document.getElementById("rentalModalOverlay");
-    const closeRentalModalButton = document.getElementById("closeRentalModal");
-    const rentalSuccessClose = document.getElementById("rentalSuccessClose");
-
-    function openRentalModal(vehicleName, rate) {
-        if (!rentalModal) return;
-
-        const vehicleNameElement = document.getElementById("rentalVehicleName");
-        const vehicleRateElement = document.getElementById("rentalVehicleRate");
-        const vehicleInput = document.getElementById("rentalVehicleInput");
-        const rateInput = document.getElementById("rentalRateInput");
-
-        const formContainer = document.getElementById("rentalFormContainer");
-        const successBox = document.getElementById("rentalSuccess");
-
-        if (formContainer) formContainer.hidden = false;
-        if (successBox) {
-            successBox.hidden = true;
-            successBox.classList.remove("active");
-        }
-
-        if (vehicleNameElement) vehicleNameElement.textContent = vehicleName;
-        if (vehicleRateElement) {
-            vehicleRateElement.textContent = "₹" + Number(rate || 0).toLocaleString("en-IN") + "/day";
-        }
-        if (vehicleInput) vehicleInput.value = vehicleName;
-        if (rateInput) rateInput.value = rate || "";
-
-        rentalModal.classList.add("active");
-        rentalModal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("modal-open");
-
-        setMinimumRentalDate();
-    }
-
-    function closeRentalModal() {
-        if (!rentalModal) return;
-
-        rentalModal.classList.remove("active");
-        rentalModal.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("modal-open");
-    }
-
-    window.closeRentalModal = closeRentalModal;
-
-    if (rentalModalOverlay) rentalModalOverlay.addEventListener("click", closeRentalModal);
-    if (closeRentalModalButton) closeRentalModalButton.addEventListener("click", closeRentalModal);
-    if (rentalSuccessClose) rentalSuccessClose.addEventListener("click", closeRentalModal);
-
-    /* =====================================================
-       RENTAL VEHICLE BUTTONS
-    ===================================================== */
-
-    const rentalButtons = document.querySelectorAll(".rental-interest-btn");
-
-    rentalButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const vehicle = button.dataset.rentalVehicle || "Selected Vehicle";
-            const rate = button.dataset.rentalRate || "0";
-            openRentalModal(vehicle, rate);
-        });
-    });
-
-    /* =====================================================
-       RENTAL DATES
-    ===================================================== */
-
-    const rentalStartDate = document.getElementById("rentalStartDate");
-    const rentalEndDate = document.getElementById("rentalEndDate");
-
-    function getTodayDate() {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, "0");
-        const day = String(today.getDate()).padStart(2, "0");
-        return `${year}-${month}-${day}`;
-    }
-
-    function setMinimumRentalDate() {
-        const today = getTodayDate();
-        if (rentalStartDate) rentalStartDate.min = today;
-        if (rentalEndDate) rentalEndDate.min = today;
-    }
-
-    if (rentalStartDate) {
-        rentalStartDate.addEventListener("change", () => {
-            if (!rentalEndDate) return;
-            rentalEndDate.min = rentalStartDate.value;
-            if (rentalEndDate.value && rentalEndDate.value < rentalStartDate.value) {
-                rentalEndDate.value = "";
-            }
-        });
-    }
-
-    /* =====================================================
-       RENTAL FORM - BACKEND
-    ===================================================== */
-
-    const rentalForm = document.getElementById("rentalForm");
-
-    if (rentalForm) {
-        rentalForm.addEventListener("submit", async event => {
-            event.preventDefault();
-
-            const start = rentalStartDate?.value;
-            const end = rentalEndDate?.value;
-
-            if (!start || !end) {
-                showFormMessage(rentalForm, "Please select pickup and return dates.", "error");
-                return;
-            }
-
-            if (end < start) {
-                showFormMessage(rentalForm, "Return date cannot be before pickup date.", "error");
-                return;
-            }
-
-            if (!validateForm(rentalForm)) {
-                showFormMessage(rentalForm, "Please fill all required details.", "error");
-                return;
-            }
-
-            const submitButton = document.getElementById("rentalSubmit");
-            setButtonLoading(submitButton, true);
-
-            try {
-                const formData = new FormData(rentalForm);
-
-                const rentalData = {
-                    vehicle: document.getElementById("rentalVehicleInput")?.value || "",
-                    rate: document.getElementById("rentalRateInput")?.value || 0,
-                    pickup_date: start,
-                    return_date: end,
-                    customer_name: formData.get("customerName") || "",
-                    phone: formData.get("phone") || "",
-                    city: formData.get("city") || "",
-                    message: formData.get("message") || ""
-                };
-
-                const response = await fetch(`${API_BASE_URL}/rental-request`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(rentalData)
-                });
-
-                const result = await response.json();
-
-                if (!response.ok || !result.success) {
-                    throw new Error(result.message || "Unable to submit rental request.");
-                }
-
-                const reference = result.reference || createReference("REN");
-
-                saveLocalLead({
-                    ...rentalData,
-                    type: "rental_request",
-                    reference: reference,
-                    createdAt: new Date().toISOString(),
-                    backendSaved: true
-                });
-
-                setButtonLoading(submitButton, false);
-                showRentalSuccess(reference);
-                rentalForm.reset();
-                setMinimumRentalDate();
-
-            } catch (error) {
-                console.error("Rental backend error:", error);
-                setButtonLoading(submitButton, false);
-                showFormMessage(rentalForm, "Unable to connect to the server. Please try again.", "error");
-            }
-        });
-    }
-
-    function showRentalSuccess(reference) {
-        const container = document.getElementById("rentalFormContainer");
-        const success = document.getElementById("rentalSuccess");
-        const referenceElement = document.getElementById("rentalReference");
-
-        if (container) container.hidden = true;
-        if (success) {
-            success.hidden = false;
-            success.classList.add("active");
-        }
-        if (referenceElement) referenceElement.textContent = "Reference: " + reference;
-    }
-
-    /* =====================================================
        SELL VEHICLE FORM - BACKEND (UPDATED: FormData with photos)
     ===================================================== */
 
@@ -904,32 +652,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let selectedPhotoFiles = [];
 
-    if (photoInput && photoPreview) {
-        photoInput.addEventListener("change", () => {
-            const newFiles = Array.from(photoInput.files);
+   if (photoInput && photoPreview) {
+    photoInput.addEventListener("change", async () => {
+        const newFiles = Array.from(photoInput.files);
 
-            // Check limit: max 4 photos
-            const totalCount = selectedPhotoFiles.length + newFiles.length;
-            if (totalCount > 4) {
-                alert("Maximum 4 photos allowed.");
+        const totalCount = selectedPhotoFiles.length + newFiles.length;
+        if (totalCount > 4) {
+            alert("Maximum 4 photos allowed.");
+            photoInput.value = "";
+            return;
+        }
+
+        for (const file of newFiles) {
+            if (file.size > 8 * 1024 * 1024) {
+                alert(`File "${file.name}" is larger than 8MB. Please select a smaller file.`);
                 photoInput.value = "";
                 return;
             }
+        }
 
-            // Check each file size (8MB)
+        const uploadLabel = document.querySelector(".upload-area strong");
+        if (uploadLabel) uploadLabel.textContent = "Compressing...";
+
+        try {
+            const compressedFiles = [];
+
             for (const file of newFiles) {
-                if (file.size > 8 * 1024 * 1024) {
-                    alert(`File "${file.name}" is larger than 8MB. Please select a smaller file.`);
-                    photoInput.value = "";
-                    return;
+                try {
+                    const compressed = await compressImage(file, 1000, 1000, 0.7);
+                    compressedFiles.push(compressed);
+                } catch (error) {
+                    console.error("Compression error:", error);
+                    compressedFiles.push(file);
                 }
             }
 
-            selectedPhotoFiles = [...selectedPhotoFiles, ...newFiles];
+            selectedPhotoFiles = [...selectedPhotoFiles, ...compressedFiles];
             photoInput.value = "";
             renderPhotoPreview();
-        });
-    }
+
+        } catch (error) {
+            console.error("Photo upload error:", error);
+            alert("Failed to process photos. Please try again.");
+        } finally {
+            if (uploadLabel) uploadLabel.textContent = "Upload vehicle photos";
+        }
+    });
+}
 
     function renderPhotoPreview() {
         if (!photoPreview) return;
@@ -1158,7 +927,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.key === "Escape") {
             closeMenu();
             closeInterestModalWindow();
-            closeRentalModal();
         }
     });
 
@@ -1185,9 +953,6 @@ document.addEventListener("DOMContentLoaded", () => {
        INITIALIZE
     ===================================================== */
 
-    setMinimumRentalDate();
-
-    if (rentalGrid) filterRentalVehicles();
     if (vehicleGrid) applyVehicleFilters();
 
 });
